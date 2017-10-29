@@ -1,0 +1,586 @@
+I had some trouble working with the auto grader so I have created this file
+to show you all the result of each test and the log that the autograder throws me
+when I try to run each test via the command line. I believe there is a problem with
+how the solution.txt file is being parsed. The contents of the solution.txt file and what is being
+loaded via the command line run of master.py is not consistent. I have logged these
+discrepancies below. It takes approximately 5 seconds per test to load the catalog, read the
+initial and goal states, execute the algorithm, and write the resulting planner to output.
+
+# Test 0
+
+Returns an empty set because the initial state is the goal state
+
+# Autograder Output
+
+python3 grader.py initial0 goal0 solution.txt
+Loading courses from newcatalog.xlst...
+/usr/local/anaconda3/lib/python3.6/site-packages/openpyxl/reader/worksheet.py:310: UserWarning: Unknown extension is not supported and will be removed
+  warn(msg)
+Autograder using this file as the INITIAL file:
+ initial0
+Loaded from INITIAL file:
+ [Course(program='CS', designation='1101')]
+Autograder using this file as the GOAL file:
+ goal0
+Loaded from GOAL file:
+ [Course(program='CS', designation='1101')]
+Autograder using this file as the SOLUTION file:
+ solution.txt
+Loaded from SOLUTION file:
+ []
+Loaded courses in your solution:
+ []
+Checking number of credit hours in each term...
+{(Semester.Fall, Year.Frosh): 0, (Semester.Spring, Year.Frosh): 0, (Semester.Summer, Year.Frosh): 0, (Semester.Fall, Year.Sophomore): 0, (Semester.Spring, Year.Sophomore): 0, (Semester.Summer, Year.Sophomore): 0, (Semester.Fall, Year.Junior): 0, (Semester.Spring, Year.Junior): 0, (Semester.Summer, Year.Junior): 0, (Semester.Fall, Year.Senior): 0, (Semester.Spring, Year.Senior): 0, (Semester.Summer, Year.Senior): 0}
+Checking that each course's credits and available terms match solution...
+Checking that each course's prerequisites are taken before that course...
+Checking that all courses in the goal state are taken...
+********** Autograder finished **********
+Your solution was correctly empty because all goals were already satisfied by the initial state.
+
+# Test 1
+
+# Valid Output:
+
+Course(program='CS', designation='1101'): CourseInfo(credits='3', terms=('Fall', 'Frosh'), prereqs=[])
+Course(program='AADS', designation='1010'): CourseInfo(credits='3', terms=('Fall', 'Frosh'), prereqs=[])
+Course(program='AADS', designation='1506'): CourseInfo(credits='3', terms=('Fall', 'Frosh'), prereqs=[])
+Course(program='AADS', designation='1706'): CourseInfo(credits='3', terms=('Fall', 'Frosh'), prereqs=[])
+
+# Autograder Output
+
+python3 studentSolutionWrapper.py initial1 goal1
+Loading courses from newcatalog.xlst...
+/usr/local/anaconda3/lib/python3.6/site-packages/openpyxl/reader/worksheet.py:310: UserWarning: Unknown extension is not supported and will be removed
+  warn(msg)
+Wrapper using this file as the INITIAL file:
+ initial1
+Loaded from INITIAL file:
+ []
+Wrapper using this file as the GOAL file:
+ goal1
+Loaded from GOAL file:
+ [Course(program='CS', designation='1101')]
+master.py executing command:
+python3 grader.py initial1 goal1 solution.txt
+Loading courses from newcatalog.xlst...
+/usr/local/anaconda3/lib/python3.6/site-packages/openpyxl/reader/worksheet.py:310: UserWarning: Unknown extension is not supported and will be removed
+  warn(msg)
+Autograder using this file as the INITIAL file:
+ initial1
+Loaded from INITIAL file:
+ []
+Autograder using this file as the GOAL file:
+ goal1
+Loaded from GOAL file:
+ [Course(program='CS', designation='1101')]
+Autograder using this file as the SOLUTION file:
+ solution.txt
+Loaded from SOLUTION file:
+ [(Course(program='AADS', designation='1010'), (Semester.Fall, Year.Frosh)), (Course(program='AADS', designation='1506'), (Semester.Fall, Year.Frosh)), (Course(program='AADS', designation='1706'), (Semester.Fall, Year.Frosh)), (Course(program='CS', designation='1101'), (Semester.Fall, Year.Frosh))]
+Loaded courses in your solution:
+ [(Course(program='AADS', designation='1010'), (Semester.Fall, Year.Frosh)), (Course(program='AADS', designation='1506'), (Semester.Fall, Year.Frosh)), (Course(program='AADS', designation='1706'), (Semester.Fall, Year.Frosh)), (Course(program='CS', designation='1101'), (Semester.Fall, Year.Frosh))]
+Checking number of credit hours in each term...
+{(Semester.Fall, Year.Frosh): 12, (Semester.Spring, Year.Frosh): 0, (Semester.Summer, Year.Frosh): 0, (Semester.Fall, Year.Sophomore): 0, (Semester.Spring, Year.Sophomore): 0, (Semester.Summer, Year.Sophomore): 0, (Semester.Fall, Year.Junior): 0, (Semester.Spring, Year.Junior): 0, (Semester.Summer, Year.Junior): 0, (Semester.Fall, Year.Senior): 0, (Semester.Spring, Year.Senior): 0, (Semester.Summer, Year.Senior): 0}
+Checking that each course's credits and available terms match solution...
+Checking that each course's prerequisites are taken before that course...
+Taking course:  Course(program='AADS', designation='1010') ...
+Prereqs are:  ()
+Successfully took course:  Course(program='AADS', designation='1010')
+Taking course:  Course(program='AADS', designation='1506') ...
+Prereqs are:  ()
+Successfully took course:  Course(program='AADS', designation='1506')
+Taking course:  Course(program='AADS', designation='1706') ...
+Prereqs are:  ()
+Successfully took course:  Course(program='AADS', designation='1706')
+Taking course:  Course(program='CS', designation='1101') ...
+Prereqs are:  ()
+Successfully took course:  Course(program='CS', designation='1101')
+Checking that all courses in the goal state are taken...
+********** Autograder finished **********
+There are  0  errors in your solution.
+Your solution finished by  Fall   Frosh .
+
+
+# Test 2
+
+# Valid Ouptut:
+
+Course(program='CS', designation='1101'): CourseInfo(credits='3', terms=('Fall', 'Frosh'), prereqs=[])
+Course(program='AADS', designation='1010'): CourseInfo(credits='3', terms=('Fall', 'Frosh'), prereqs=[])
+Course(program='AADS', designation='1506'): CourseInfo(credits='3', terms=('Fall', 'Frosh'), prereqs=[])
+Course(program='AADS', designation='1706'): CourseInfo(credits='3', terms=('Fall', 'Frosh'), prereqs=[])
+Course(program='CS', designation='2201'): CourseInfo(credits='3', terms=('Spring', 'Frosh'), prereqs=(('CS', '1101'),))
+Course(program='AADS', designation='3850'): CourseInfo(credits=3, terms=('Spring', 'Frosh'), prereqs=[])
+Course(program='AADS', designation='1001'): CourseInfo(credits='1', terms=('Spring', 'Frosh'), prereqs=[])
+Course(program='AADS', designation='2214'): CourseInfo(credits='3', terms=('Spring', 'Frosh'), prereqs=[])
+Course(program='AADS', designation='4979'): CourseInfo(credits='3', terms=('Spring', 'Frosh'), prereqs=[])
+Course(program='CS', designation='3251'): CourseInfo(credits='3', terms=('Fall', 'Sophomore'), prereqs=(('CS', '2201'),))
+Course(program='CS', designation='2231'): CourseInfo(credits='3', terms=('Fall', 'Sophomore'), prereqs=(('CS', '2201'),))
+Course(program='AADS', designation='2166'): CourseInfo(credits='3', terms=('Fall', 'Sophomore'), prereqs=[])
+Course(program='AADS', designation='2168'): CourseInfo(credits='3', terms=('Fall', 'Sophomore'), prereqs=[])
+Course(program='CS', designation='statsprobability'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=[])
+
+# Autograder Output
+
+python3 grader.py initial2 goal2 solution.txt
+Loading courses from newcatalog.xlst...
+/usr/local/anaconda3/lib/python3.6/site-packages/openpyxl/reader/worksheet.py:310: UserWarning: Unknown extension is not supported and will be removed
+  warn(msg)
+Autograder using this file as the INITIAL file:
+ initial2
+Loaded from INITIAL file:
+ [Course(program='MATH', designation='2810'), Course(program='MATH', designation='2820'), Course(program='MATH', designation='3640')]
+Autograder using this file as the GOAL file:
+ goal2
+Loaded from GOAL file:
+ [Course(program='CS', designation='2231'), Course(program='CS', designation='3251'), Course(program='CS', designation='statsprobability')]
+Autograder using this file as the SOLUTION file:
+ solution.txt
+Loaded from SOLUTION file:
+ [(Course(program='AADS', designation='1001'), (Semester.Spring, Year.Frosh)), (Course(program='AADS', designation='1010'), (Semester.Fall, Year.Frosh)), (Course(program='AADS', designation='1506'), (Semester.Fall, Year.Frosh)), (Course(program='AADS', designation='1706'), (Semester.Fall, Year.Frosh)), (Course(program='AADS', designation='2166'), (Semester.Fall, Year.Sophomore)), (Course(program='AADS', designation='2168'), (Semester.Fall, Year.Sophomore)), (Course(program='AADS', designation='2214'), (Semester.Spring, Year.Frosh))]
+Loaded courses in your solution:
+ [(Course(program='AADS', designation='1010'), (Semester.Fall, Year.Frosh)), (Course(program='AADS', designation='1506'), (Semester.Fall, Year.Frosh)), (Course(program='AADS', designation='1706'), (Semester.Fall, Year.Frosh)), (Course(program='AADS', designation='1001'), (Semester.Spring, Year.Frosh)), (Course(program='AADS', designation='2214'), (Semester.Spring, Year.Frosh)), (Course(program='AADS', designation='2166'), (Semester.Fall, Year.Sophomore)), (Course(program='AADS', designation='2168'), (Semester.Fall, Year.Sophomore))]
+Checking number of credit hours in each term...
+{(Semester.Fall, Year.Frosh): 9, (Semester.Spring, Year.Frosh): 4, (Semester.Summer, Year.Frosh): 0, (Semester.Fall, Year.Sophomore): 6, (Semester.Spring, Year.Sophomore): 0, (Semester.Summer, Year.Sophomore): 0, (Semester.Fall, Year.Junior): 0, (Semester.Spring, Year.Junior): 0, (Semester.Summer, Year.Junior): 0, (Semester.Fall, Year.Senior): 0, (Semester.Spring, Year.Senior): 0, (Semester.Summer, Year.Senior): 0}
+Error in your solution:
+	Too few credits taken in term # (Semester.Fall, Year.Frosh)
+Error in your solution:
+	Too few credits taken in term # (Semester.Spring, Year.Frosh)
+Error in your solution:
+	Too few credits taken in term # (Semester.Fall, Year.Sophomore)
+Checking that each course's credits and available terms match solution...
+Checking that each course's prerequisites are taken before that course...
+Taking course:  Course(program='AADS', designation='1010') ...
+Prereqs are:  ()
+Successfully took course:  Course(program='AADS', designation='1010')
+Taking course:  Course(program='AADS', designation='1506') ...
+Prereqs are:  ()
+Successfully took course:  Course(program='AADS', designation='1506')
+Taking course:  Course(program='AADS', designation='1706') ...
+Prereqs are:  ()
+Successfully took course:  Course(program='AADS', designation='1706')
+Taking course:  Course(program='AADS', designation='1001') ...
+Prereqs are:  ()
+Successfully took course:  Course(program='AADS', designation='1001')
+Taking course:  Course(program='AADS', designation='2214') ...
+Prereqs are:  ()
+Successfully took course:  Course(program='AADS', designation='2214')
+Taking course:  Course(program='AADS', designation='2166') ...
+Prereqs are:  ()
+Successfully took course:  Course(program='AADS', designation='2166')
+Taking course:  Course(program='AADS', designation='2168') ...
+Prereqs are:  ()
+Successfully took course:  Course(program='AADS', designation='2168')
+Checking that all courses in the goal state are taken...
+Error in your solution:
+	Did not satisfy requirement/goal  Course(program='CS', designation='2231')
+Error in your solution:
+	Did not satisfy requirement/goal  Course(program='CS', designation='3251')
+Error in your solution:
+	Did not satisfy requirement/goal  Course(program='CS', designation='statsprobability')
+********** Autograder finished **********
+There are  6  errors in your solution.
+Your solution finished by  Fall   Sophomore .
+
+# Test 3
+
+# Valid Output:
+
+Course(program='CS', designation='1101') CourseInfo(credits='3', terms=('Fall', 'Frosh'), prereqs=[])
+Course(program='EECE', designation='2116') CourseInfo(credits='3', terms=('Fall', 'Frosh'), prereqs=[])
+Course(program='EECE', designation='2116L') CourseInfo(credits='1', terms=('Fall', 'Frosh'), prereqs=[])
+Course(program='CS', designation='2212') CourseInfo(credits='3', terms=('Fall', 'Frosh'), prereqs=[])
+Course(program='AADS', designation='1010') CourseInfo(credits='3', terms=('Fall', 'Frosh'), prereqs=[])
+Course(program='CS', designation='2201') CourseInfo(credits='3', terms=('Spring', 'Frosh'), prereqs=(('CS', '1101'),))
+Course(program='AADS', designation='3850') CourseInfo(credits=3, terms=('Spring', 'Frosh'), prereqs=[])
+Course(program='AADS', designation='1001') CourseInfo(credits='1', terms=('Spring', 'Frosh'), prereqs=[])
+Course(program='AADS', designation='1706') CourseInfo(credits='3', terms=('Spring', 'Frosh'), prereqs=[])
+Course(program='AADS', designation='2214') CourseInfo(credits='3', terms=('Spring', 'Frosh'), prereqs=[])
+Course(program='CS', designation='3251') CourseInfo(credits='3', terms=('Fall', 'Sophomore'), prereqs=(('CS', '2201'),))
+Course(program='CS', designation='2231') CourseInfo(credits='3', terms=('Fall', 'Sophomore'), prereqs=(('CS', '2201'),))
+Course(program='CS', designation='3250') CourseInfo(credits='3', terms=('Fall', 'Sophomore'), prereqs=(('CS', '2201'), ('CS', '2212')))
+Course(program='AADS', designation='1506') CourseInfo(credits='3', terms=('Fall', 'Sophomore'), prereqs=[])
+Course(program='CS', designation='3270') CourseInfo(credits='3', terms=('Spring', 'Sophomore'), prereqs=(('CS', '2231'),))
+Course(program='CS', designation='3281') CourseInfo(credits='3', terms=('Spring', 'Sophomore'), prereqs=(('CS', '2231'), ('CS', '3251')))
+Course(program='AADS', designation='4979') CourseInfo(credits='3', terms=('Spring', 'Sophomore'), prereqs=[])
+Course(program='AADS', designation='1016') CourseInfo(credits='3', terms=('Spring', 'Sophomore'), prereqs=[])
+Course(program='CS', designation='core') CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('CS', '1101'), ('CS', '2201'), ('CS', '3251'), ('CS', '3270'), ('EECE', '2116'), ('EECE', '2116L'), ('CS', '2231'), ('CS', '3281'), ('CS', '2212'), ('CS', '3250')))
+Done
+
+# Autograder Output
+
+python3 grader.py initial3 goal3 solution.txt
+Loading courses from newcatalog.xlst...
+/usr/local/anaconda3/lib/python3.6/site-packages/openpyxl/reader/worksheet.py:310: UserWarning: Unknown extension is not supported and will be removed
+  warn(msg)
+Autograder using this file as the INITIAL file:
+ initial3
+Loaded from INITIAL file:
+ []
+Autograder using this file as the GOAL file:
+ goal3
+Loaded from GOAL file:
+ [Course(program='CS', designation='core'), Course(program='CS', designation='1101')]
+Autograder using this file as the SOLUTION file:
+ solution.txt
+Loaded from SOLUTION file:
+ [(Course(program='AADS', designation='1001'), (Semester.Spring, Year.Frosh)), (Course(program='AADS', designation='1010'), (Semester.Fall, Year.Frosh)), (Course(program='AADS', designation='1016'), (Semester.Spring, Year.Sophomore)), (Course(program='AADS', designation='1506'), (Semester.Fall, Year.Sophomore)), (Course(program='AADS', designation='1706'), (Semester.Spring, Year.Frosh)), (Course(program='AADS', designation='2214'), (Semester.Spring, Year.Frosh))]
+Loaded courses in your solution:
+ [(Course(program='AADS', designation='1010'), (Semester.Fall, Year.Frosh)), (Course(program='AADS', designation='1001'), (Semester.Spring, Year.Frosh)), (Course(program='AADS', designation='1706'), (Semester.Spring, Year.Frosh)), (Course(program='AADS', designation='2214'), (Semester.Spring, Year.Frosh)), (Course(program='AADS', designation='1506'), (Semester.Fall, Year.Sophomore)), (Course(program='AADS', designation='1016'), (Semester.Spring, Year.Sophomore))]
+Checking number of credit hours in each term...
+{(Semester.Fall, Year.Frosh): 3, (Semester.Spring, Year.Frosh): 7, (Semester.Summer, Year.Frosh): 0, (Semester.Fall, Year.Sophomore): 3, (Semester.Spring, Year.Sophomore): 3, (Semester.Summer, Year.Sophomore): 0, (Semester.Fall, Year.Junior): 0, (Semester.Spring, Year.Junior): 0, (Semester.Summer, Year.Junior): 0, (Semester.Fall, Year.Senior): 0, (Semester.Spring, Year.Senior): 0, (Semester.Summer, Year.Senior): 0}
+Error in your solution:
+	Too few credits taken in term # (Semester.Fall, Year.Frosh)
+Error in your solution:
+	Too few credits taken in term # (Semester.Spring, Year.Frosh)
+Error in your solution:
+	Too few credits taken in term # (Semester.Fall, Year.Sophomore)
+Error in your solution:
+	Too few credits taken in term # (Semester.Spring, Year.Sophomore)
+Checking that each course's credits and available terms match solution...
+Checking that each course's prerequisites are taken before that course...
+Taking course:  Course(program='AADS', designation='1010') ...
+Prereqs are:  ()
+Successfully took course:  Course(program='AADS', designation='1010')
+Taking course:  Course(program='AADS', designation='1001') ...
+Prereqs are:  ()
+Successfully took course:  Course(program='AADS', designation='1001')
+Taking course:  Course(program='AADS', designation='1706') ...
+Prereqs are:  ()
+Successfully took course:  Course(program='AADS', designation='1706')
+Taking course:  Course(program='AADS', designation='2214') ...
+Prereqs are:  ()
+Successfully took course:  Course(program='AADS', designation='2214')
+Taking course:  Course(program='AADS', designation='1506') ...
+Prereqs are:  ()
+Successfully took course:  Course(program='AADS', designation='1506')
+Taking course:  Course(program='AADS', designation='1016') ...
+Prereqs are:  ()
+Successfully took course:  Course(program='AADS', designation='1016')
+Checking that all courses in the goal state are taken...
+Error in your solution:
+	Did not satisfy requirement/goal  Course(program='CS', designation='core')
+Error in your solution:
+	Did not satisfy requirement/goal  Course(program='CS', designation='1101')
+********** Autograder finished **********
+There are  6  errors in your solution.
+Your solution finished by  Spring   Sophomore .
+
+# Test 4
+
+# Valid Output:
+
+Course(program='MATH', designation='1200'): CourseInfo(credits='3', terms=('Fall', 'Frosh'), prereqs=[])
+Course(program='CHEM', designation='1601'): CourseInfo(credits='3', terms=('Fall', 'Frosh'), prereqs=[])
+Course(program='ES', designation='1401'): CourseInfo(credits='1', terms=('Fall', 'Frosh'), prereqs=[])
+Course(program='ES', designation='1402'): CourseInfo(credits='1', terms=('Fall', 'Frosh'), prereqs=[])
+Course(program='ES', designation='1403'): CourseInfo(credits='1', terms=('Fall', 'Frosh'), prereqs=[])
+Course(program='HIST', designation='2700'): CourseInfo(credits='3', terms=('Fall', 'Frosh'), prereqs=[])
+Course(program='ENGL', designation='3896'): CourseInfo(credits=3, terms=('Fall', 'Frosh'), prereqs=[])
+Course(program='PSY', designation='1200'): CourseInfo(credits='3', terms=('Fall', 'Frosh'), prereqs=[])
+Course(program='MATH', designation='1201'): CourseInfo(credits='3', terms=('Spring', 'Frosh'), prereqs=(('MATH', '1200'),))
+Course(program='BSCI', designation='1100'): CourseInfo(credits='3', terms=('Spring', 'Frosh'), prereqs=[])
+Course(program='BSCI', designation='1100L'): CourseInfo(credits='1', terms=('Spring', 'Frosh'), prereqs=[])
+Course(program='ARTS', designation='1102'): CourseInfo(credits='3', terms=('Spring', 'Frosh'), prereqs=[])
+Course(program='CS', designation='2201'): CourseInfo(credits='3', terms=('Spring', 'Frosh'), prereqs=(('CS', '1101'),))
+Course(program='EECE', designation='2116'): CourseInfo(credits='3', terms=('Spring', 'Frosh'), prereqs=[])
+Course(program='EECE', designation='2116L'): CourseInfo(credits='1', terms=('Spring', 'Frosh'), prereqs=[])
+Course(program='BASS', designation='1000'): CourseInfo(credits='1', terms=('Spring', 'Frosh'), prereqs=[])
+Course(program='MATH', designation='1301'): CourseInfo(credits='4', terms=('Fall', 'Sophomore'), prereqs=(('MATH', '1201'),))
+Course(program='BSCI', designation='1510'): CourseInfo(credits='3', terms=('Fall', 'Sophomore'), prereqs=(('CHEM', '1601'),))
+Course(program='SOC', designation='3702'): CourseInfo(credits='3', terms=('Fall', 'Sophomore'), prereqs=[])
+Course(program='ARTS', designation='2101'): CourseInfo(credits='3', terms=('Fall', 'Sophomore'), prereqs=(('ARTS', '1102'),))
+Course(program='CS', designation='3251'): CourseInfo(credits='3', terms=('Fall', 'Sophomore'), prereqs=(('CS', '2201'),))
+Course(program='BSSN', designation='1000'): CourseInfo(credits='1', terms=('Fall', 'Sophomore'), prereqs=[])
+Course(program='CLAR', designation='1000'): CourseInfo(credits='1', terms=('Fall', 'Sophomore'), prereqs=[])
+Course(program='MATH', designation='2300'): CourseInfo(credits='3', terms=('Spring', 'Sophomore'), prereqs=(('MATH', '1301'),))
+Course(program='BSCI', designation='1511'): CourseInfo(credits='3', terms=('Spring', 'Sophomore'), prereqs=(('BSCI', '1510'),))
+Course(program='CS', designation='2231'): CourseInfo(credits='3', terms=('Spring', 'Sophomore'), prereqs=(('CS', '2201'),))
+Course(program='CS', designation='2212'): CourseInfo(credits='3', terms=('Spring', 'Sophomore'), prereqs=[])
+Course(program='PHYS', designation='1601'): CourseInfo(credits='3', terms=('Spring', 'Sophomore'), prereqs=[])
+Course(program='CS', designation='1103'): CourseInfo(credits='3', terms=('Spring', 'Sophomore'), prereqs=[])
+Course(program='MATH', designation='2410'): CourseInfo(credits='3', terms=('Fall', 'Junior'), prereqs=(('MATH', '2300'),))
+Course(program='MATH', designation='2420'): CourseInfo(credits='3', terms=('Fall', 'Junior'), prereqs=(('MATH', '2300'),))
+Course(program='CS', designation='3270'): CourseInfo(credits='3', terms=('Fall', 'Junior'), prereqs=(('CS', '2231'),))
+Course(program='CS', designation='3281'): CourseInfo(credits='3', terms=('Fall', 'Junior'), prereqs=(('CS', '2231'), ('CS', '3251')))
+Course(program='CS', designation='3250'): CourseInfo(credits='3', terms=('Fall', 'Junior'), prereqs=(('CS', '2201'), ('CS', '2212')))
+Course(program='CS', designation='3860'): CourseInfo(credits=3, terms=('Fall', 'Junior'), prereqs=(('CS', '2231'),))
+Course(program='MATH', designation='2810'): CourseInfo(credits='3', terms=('Spring', 'Junior'), prereqs=(('MATH', '2300'),))
+Course(program='CS', designation='3861'): CourseInfo(credits=3, terms=('Spring', 'Junior'), prereqs=(('CS', '2231'),))
+Course(program='CS', designation='1151'): CourseInfo(credits='3', terms=('Spring', 'Junior'), prereqs=[])
+Course(program='CLLO', designation='1000'): CourseInfo(credits='1', terms=('Spring', 'Junior'), prereqs=[])
+Course(program='COMP', designation='1000'): CourseInfo(credits='1', terms=('Spring', 'Junior'), prereqs=[])
+Course(program='FLUT', designation='1000'): CourseInfo(credits='1', terms=('Spring', 'Junior'), prereqs=[])
+Course(program='AADS', designation='3104W'): CourseInfo(credits='3', terms=('Spring', 'Junior'), prereqs=[])
+Course(program='CS', designation='3259'): CourseInfo(credits='3', terms=('Fall', 'Senior'), prereqs=(('CS', '2201'), ('MATH', '2410')))
+Course(program='CS', designation='3282'): CourseInfo(credits='3', terms=('Fall', 'Senior'), prereqs=(('CS', '3281'),))
+Course(program='CS', designation='4959'): CourseInfo(credits='1', terms=('Fall', 'Senior'), prereqs=(('CS', '3281'),))
+Course(program='BME', designation='2100'): CourseInfo(credits='3', terms=('Fall', 'Senior'), prereqs=(('PHYS', '1601'), ('MATH', '1301'), ('CS', '1103')))
+Course(program='AADS', designation='1010'): CourseInfo(credits='3', terms=('Fall', 'Senior'), prereqs=[])
+Course(program='CS', designation='calculus'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('MATH', '1200'), ('MATH', '1201'), ('MATH', '1301'), ('MATH', '2300'), ('MATH', '2410')))
+Course(program='CS', designation='statsprobability'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('MATH', '2810'),))
+Course(program='CS', designation='mathelective'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('MATH', '2420'),))
+Course(program='CS', designation='mathematics'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('CS', 'calculus'), ('CS', 'statsprobability'), ('CS', 'mathelective')))
+Course(program='CS', designation='sciencelab'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('BSCI', '1100'), ('BSCI', '1100L')))
+Course(program='CS', designation='scienceb'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('BSCI', '1510'),))
+Course(program='CS', designation='sciencec'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('BSCI', '1511'),))
+Course(program='CS', designation='esintro'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('ES', '1401'), ('ES', '1402'), ('ES', '1403')))
+Course(program='CS', designation='liberalhum'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('HIST', '2700'), ('ENGL', '3896')))
+Course(program='CS', designation='liberalsoc'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('PSY', '1200'), ('SOC', '3702')))
+Course(program='CS', designation='liberalother'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('ARTS', '1102'), ('ARTS', '2101')))
+Course(program='CS', designation='liberalarts'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('CS', 'liberalhum'), ('CS', 'liberalsoc'), ('CS', 'liberalother')))
+Course(program='CS', designation='core'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('CS', '1101'), ('CS', '2201'), ('CS', '3251'), ('CS', '3270'), ('EECE', '2116'), ('EECE', '2116L'), ('CS', '2231'), ('CS', '3281'), ('CS', '2212'), ('CS', '3250')))
+Course(program='CS', designation='depthproject'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('CS', '3259'),))
+Course(program='CS', designation='depthothera'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('CS', '3282'),))
+Course(program='CS', designation='depthotherb'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('CS', '3860'),))
+Course(program='CS', designation='depthotherc'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('CS', '3861'),))
+Course(program='CS', designation='depth'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('CS', 'depthproject'), ('CS', 'depthothera'), ('CS', 'depthotherb'), ('CS', 'depthotherc')))
+Course(program='CS', designation='techelectives1'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('BME', '2100'),))
+Course(program='CS', designation='techelectives2'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('BME', '3000'),))
+Course(program='CS', designation='techelectives'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('CS', 'techelectives1'), ('CS', 'techelectives2')))
+Course(program='CS', designation='open1'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('BASS', '1000'),))
+Course(program='CS', designation='open2'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('BSSN', '1000'),))
+Course(program='CS', designation='open3'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('CLAR', '1000'),))
+Course(program='CS', designation='open4'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('CLLO', '1000'),))
+Course(program='CS', designation='open5'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('COMP', '1000'),))
+Course(program='CS', designation='open6'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('FLUT', '1000'),))
+Course(program='CS', designation='openelectives'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('CS', 'open1'), ('CS', 'open2'), ('CS', 'open3'), ('CS', 'open4'), ('CS', 'open5'), ('CS', 'open6')))
+Course(program='CS', designation='writingrequirement'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('AADS', '3104W'),))
+Course(program='CS', designation='major'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('CS', 'mathematics'), ('CS', 'sciencelab'), ('CS', 'scienceb'), ('CS', 'sciencec'), ('CS', 'esintro'), ('CS', 'liberalarts'), ('CS', 'core'), ('CS', 'depth'), ('CS', '4959'), ('CS', 'techelectives'), ('CS', '1151'), ('CS', 'openelectives'), ('CS', 'writingrequirement')))
+
+# Autograder Output
+
+python3 grader.py initial4 goal4 solution.txt
+Loading courses from newcatalog.xlst...
+/usr/local/anaconda3/lib/python3.6/site-packages/openpyxl/reader/worksheet.py:310: UserWarning: Unknown extension is not supported and will be removed
+  warn(msg)
+Autograder using this file as the INITIAL file:
+ initial4
+Loaded from INITIAL file:
+ [Course(program='CS', designation='1101')]
+Autograder using this file as the GOAL file:
+ goal4
+Loaded from GOAL file:
+ [Course(program='CS', designation='major')]
+Autograder using this file as the SOLUTION file:
+ solution.txt
+Fatal Error: Unrecognized Semester ' Junior '
+
+# Test 5
+
+# Valid Output:
+
+Returns an empty set because the schedule returned does not satisfy each of the goals
+
+ # Autograder Output
+
+python3 studentSolutionWrapper.py initial5 goal5
+Loading courses from newcatalog.xlst...
+/usr/local/anaconda3/lib/python3.6/site-packages/openpyxl/reader/worksheet.py:310: UserWarning: Unknown extension is not supported and will be removed
+  warn(msg)
+Wrapper using this file as the INITIAL file:
+ initial5
+Loaded from INITIAL file:
+ [Course(program='CS', designation='1101')]
+Wrapper using this file as the GOAL file:
+ goal5
+Loaded from GOAL file:
+ [Course(program='CS', designation='major'), Course(program='ANTH', designation='4345'), Course(program='ARTS', designation='3600'), Course(program='ASTR', designation='3600'), Course(program='BME', designation='4500'), Course(program='BUS', designation='2300'), Course(program='CE', designation='3705'), Course(program='LAT', designation='3140'), Course(program='JAPN', designation='3891')]
+master.py executing command:
+python3 grader.py initial5 goal5 solution.txt
+Loading courses from newcatalog.xlst...
+/usr/local/anaconda3/lib/python3.6/site-packages/openpyxl/reader/worksheet.py:310: UserWarning: Unknown extension is not supported and will be removed
+  warn(msg)
+Autograder using this file as the INITIAL file:
+ initial5
+Loaded from INITIAL file:
+ [Course(program='CS', designation='1101')]
+Autograder using this file as the GOAL file:
+ goal5
+Loaded from GOAL file:
+ [Course(program='CS', designation='major'), Course(program='ANTH', designation='4345'), Course(program='ARTS', designation='3600'), Course(program='ASTR', designation='3600'), Course(program='BME', designation='4500'), Course(program='BUS', designation='2300'), Course(program='CE', designation='3705'), Course(program='LAT', designation='3140'), Course(program='JAPN', designation='3891')]
+Autograder using this file as the SOLUTION file:
+ solution.txt
+Loaded from SOLUTION file:
+ []
+Loaded courses in your solution:
+ []
+Checking number of credit hours in each term...
+{(Semester.Fall, Year.Frosh): 0, (Semester.Spring, Year.Frosh): 0, (Semester.Summer, Year.Frosh): 0, (Semester.Fall, Year.Sophomore): 0, (Semester.Spring, Year.Sophomore): 0, (Semester.Summer, Year.Sophomore): 0, (Semester.Fall, Year.Junior): 0, (Semester.Spring, Year.Junior): 0, (Semester.Summer, Year.Junior): 0, (Semester.Fall, Year.Senior): 0, (Semester.Spring, Year.Senior): 0, (Semester.Summer, Year.Senior): 0}
+Checking that each course's credits and available terms match solution...
+Checking that each course's prerequisites are taken before that course...
+Checking that all courses in the goal state are taken...
+Error in your solution:
+	Did not satisfy requirement/goal  Course(program='CS', designation='major')
+Error in your solution:
+	Did not satisfy requirement/goal  Course(program='ANTH', designation='4345')
+Error in your solution:
+	Did not satisfy requirement/goal  Course(program='ARTS', designation='3600')
+Error in your solution:
+	Did not satisfy requirement/goal  Course(program='ASTR', designation='3600')
+Error in your solution:
+	Did not satisfy requirement/goal  Course(program='BME', designation='4500')
+Error in your solution:
+	Did not satisfy requirement/goal  Course(program='BUS', designation='2300')
+Error in your solution:
+	Did not satisfy requirement/goal  Course(program='CE', designation='3705')
+Error in your solution:
+	Did not satisfy requirement/goal  Course(program='LAT', designation='3140')
+Error in your solution:
+	Did not satisfy requirement/goal  Course(program='JAPN', designation='3891')
+********** Autograder finished **********
+Your solution was empty, indicating that no solution exists.
+This autograder (grader.py) has no opinion as to whether a solution does in fact exist (although master.py should know).
+Ignore any error messages above about problems with your solution.
+
+# Test 6
+
+# Valid Output:
+
+Course(program='MATH', designation='1200'): CourseInfo(credits='3', terms=('Fall', 'Frosh'), prereqs=[])
+Course(program='CHEM', designation='1601'): CourseInfo(credits='3', terms=('Fall', 'Frosh'), prereqs=[])
+Course(program='ES', designation='1401'): CourseInfo(credits='1', terms=('Fall', 'Frosh'), prereqs=[])
+Course(program='ES', designation='1402'): CourseInfo(credits='1', terms=('Fall', 'Frosh'), prereqs=[])
+Course(program='ES', designation='1403'): CourseInfo(credits='1', terms=('Fall', 'Frosh'), prereqs=[])
+Course(program='HIST', designation='2700'): CourseInfo(credits='3', terms=('Fall', 'Frosh'), prereqs=[])
+Course(program='ENGL', designation='3896'): CourseInfo(credits=3, terms=('Fall', 'Frosh'), prereqs=[])
+Course(program='PSY', designation='1200'): CourseInfo(credits='3', terms=('Fall', 'Frosh'), prereqs=[])
+Course(program='JAPN', designation='1102'): CourseInfo(credits='5', terms=('Spring', 'Frosh'), prereqs=(('JAPN', '1101'),))
+Course(program='MATH', designation='1201'): CourseInfo(credits='3', terms=('Spring', 'Frosh'), prereqs=(('MATH', '1200'),))
+Course(program='BSCI', designation='1100'): CourseInfo(credits='3', terms=('Spring', 'Frosh'), prereqs=[])
+Course(program='BSCI', designation='1100L'): CourseInfo(credits='1', terms=('Spring', 'Frosh'), prereqs=[])
+Course(program='ARTS', designation='1102'): CourseInfo(credits='3', terms=('Spring', 'Frosh'), prereqs=[])
+Course(program='CS', designation='2201'): CourseInfo(credits='3', terms=('Spring', 'Frosh'), prereqs=(('CS', '1101'),))
+Course(program='JAPN', designation='2201'): CourseInfo(credits='5', terms=('Fall', 'Sophomore'), prereqs=(('JAPN', '1102'),))
+Course(program='MATH', designation='1301'): CourseInfo(credits='4', terms=('Fall', 'Sophomore'), prereqs=(('MATH', '1201'),))
+Course(program='BSCI', designation='1510'): CourseInfo(credits='3', terms=('Fall', 'Sophomore'), prereqs=(('CHEM', '1601'),))
+Course(program='SOC', designation='3702'): CourseInfo(credits='3', terms=('Fall', 'Sophomore'), prereqs=[])
+Course(program='ARTS', designation='2101'): CourseInfo(credits='3', terms=('Fall', 'Sophomore'), prereqs=(('ARTS', '1102'),))
+Course(program='JAPN', designation='2202'): CourseInfo(credits='5', terms=('Spring', 'Sophomore'), prereqs=(('JAPN', '2201'),))
+Course(program='MATH', designation='2300'): CourseInfo(credits='3', terms=('Spring', 'Sophomore'), prereqs=(('MATH', '1301'),))
+Course(program='BSCI', designation='1511'): CourseInfo(credits='3', terms=('Spring', 'Sophomore'), prereqs=(('BSCI', '1510'),))
+Course(program='CS', designation='3251'): CourseInfo(credits='3', terms=('Spring', 'Sophomore'), prereqs=(('CS', '2201'),))
+Course(program='CS', designation='2231'): CourseInfo(credits='3', terms=('Spring', 'Sophomore'), prereqs=(('CS', '2201'),))
+Course(program='EECE', designation='2116L'): CourseInfo(credits='1', terms=('Spring', 'Sophomore'), prereqs=[])
+Course(program='JAPN', designation='3301'): CourseInfo(credits='3', terms=('Fall', 'Junior'), prereqs=(('JAPN', '2202'),))
+Course(program='MATH', designation='2410'): CourseInfo(credits='3', terms=('Fall', 'Junior'), prereqs=(('MATH', '2300'),))
+Course(program='MATH', designation='2420'): CourseInfo(credits='3', terms=('Fall', 'Junior'), prereqs=(('MATH', '2300'),))
+Course(program='CS', designation='3270'): CourseInfo(credits='3', terms=('Fall', 'Junior'), prereqs=(('CS', '2231'),))
+Course(program='EECE', designation='2116'): CourseInfo(credits='3', terms=('Fall', 'Junior'), prereqs=[])
+Course(program='CS', designation='3281'): CourseInfo(credits='3', terms=('Fall', 'Junior'), prereqs=(('CS', '2231'), ('CS', '3251')))
+Course(program='JAPN', designation='3302'): CourseInfo(credits='3', terms=('Spring', 'Junior'), prereqs=(('JAPN', '3301'),))
+Course(program='MATH', designation='2810'): CourseInfo(credits='3', terms=('Spring', 'Junior'), prereqs=(('MATH', '2300'),))
+Course(program='CS', designation='2212'): CourseInfo(credits='3', terms=('Spring', 'Junior'), prereqs=[])
+Course(program='CS', designation='3860'): CourseInfo(credits=3, terms=('Spring', 'Junior'), prereqs=(('CS', '2231'),))
+Course(program='CS', designation='3861'): CourseInfo(credits=3, terms=('Spring', 'Junior'), prereqs=(('CS', '2231'),))
+Course(program='PHYS', designation='1601'): CourseInfo(credits='3', terms=('Spring', 'Junior'), prereqs=[])
+Course(program='JAPN', designation='3891'): CourseInfo(credits='3', terms=('Fall', 'Senior'), prereqs=(('JAPN', '3302'),))
+Course(program='CS', designation='3250'): CourseInfo(credits='3', terms=('Fall', 'Senior'), prereqs=(('CS', '2201'), ('CS', '2212')))
+Course(program='CS', designation='3259'): CourseInfo(credits='3', terms=('Fall', 'Senior'), prereqs=(('CS', '2201'), ('MATH', '2410')))
+Course(program='CS', designation='3282'): CourseInfo(credits='3', terms=('Fall', 'Senior'), prereqs=(('CS', '3281'),))
+Course(program='CS', designation='4959'): CourseInfo(credits='1', terms=('Fall', 'Senior'), prereqs=(('CS', '3281'),))
+Course(program='CS', designation='1103'): CourseInfo(credits='3', terms=('Fall', 'Senior'), prereqs=[])
+Course(program='BASS', designation='1000'): CourseInfo(credits='1', terms=('Fall', 'Senior'), prereqs=[])
+Course(program='BSSN', designation='1000'): CourseInfo(credits='1', terms=('Fall', 'Senior'), prereqs=[])
+Course(program='CS', designation='calculus'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('MATH', '1200'), ('MATH', '1201'), ('MATH', '1301'), ('MATH', '2300'), ('MATH', '2410')))
+Course(program='CS', designation='statsprobability'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('MATH', '2810'),))
+Course(program='CS', designation='mathelective'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('MATH', '2420'),))
+Course(program='CS', designation='mathematics'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('CS', 'calculus'), ('CS', 'statsprobability'), ('CS', 'mathelective')))
+Course(program='CS', designation='sciencelab'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('BSCI', '1100'), ('BSCI', '1100L')))
+Course(program='CS', designation='scienceb'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('BSCI', '1510'),))
+Course(program='CS', designation='sciencec'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('BSCI', '1511'),))
+Course(program='CS', designation='esintro'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('ES', '1401'), ('ES', '1402'), ('ES', '1403')))
+Course(program='CS', designation='liberalhum'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('HIST', '2700'), ('ENGL', '3896')))
+Course(program='CS', designation='liberalsoc'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('PSY', '1200'), ('SOC', '3702')))
+Course(program='CS', designation='liberalother'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('ARTS', '1102'), ('ARTS', '2101')))
+Course(program='CS', designation='liberalarts'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('CS', 'liberalhum'), ('CS', 'liberalsoc'), ('CS', 'liberalother')))
+Course(program='CS', designation='core'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('CS', '1101'), ('CS', '2201'), ('CS', '3251'), ('CS', '3270'), ('EECE', '2116'), ('EECE', '2116L'), ('CS', '2231'), ('CS', '3281'), ('CS', '2212'), ('CS', '3250')))
+Course(program='CS', designation='depthproject'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('CS', '3259'),))
+Course(program='CS', designation='depthothera'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('CS', '3282'),))
+Course(program='CS', designation='depthotherb'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('CS', '3860'),))
+Course(program='CS', designation='depthotherc'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('CS', '3861'),))
+Course(program='CS', designation='depth'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('CS', 'depthproject'), ('CS', 'depthothera'), ('CS', 'depthotherb'), ('CS', 'depthotherc')))
+Course(program='CS', designation='techelectives1'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('BME', '2100'),))
+Course(program='CS', designation='techelectives2'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('BME', '3000'),))
+Course(program='CS', designation='techelectives'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('CS', 'techelectives1'), ('CS', 'techelectives2')))
+Course(program='CS', designation='1151'): CourseInfo(credits='3', terms=('Spring', 'Senior'), prereqs=[])
+Course(program='CS', designation='open1'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('BASS', '1000'),))
+Course(program='CS', designation='open2'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('BSSN', '1000'),))
+Course(program='CS', designation='open3'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('CLAR', '1000'),))
+Course(program='CLAR', designation='1000'): CourseInfo(credits='1', terms=('Spring', 'Senior'), prereqs=[])
+Course(program='CS', designation='open4'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('CLLO', '1000'),))
+Course(program='CLLO', designation='1000'): CourseInfo(credits='1', terms=('Spring', 'Senior'), prereqs=[])
+Course(program='CS', designation='open5'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('COMP', '1000'),))
+Course(program='COMP', designation='1000'): CourseInfo(credits='1', terms=('Spring', 'Senior'), prereqs=[])
+Course(program='CS', designation='open6'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('FLUT', '1000'),))
+Course(program='FLUT', designation='1000'): CourseInfo(credits='1', terms=('Spring', 'Senior'), prereqs=[])
+Course(program='CS', designation='openelectives'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('CS', 'open1'), ('CS', 'open2'), ('CS', 'open3'), ('CS', 'open4'), ('CS', 'open5'), ('CS', 'open6')))
+Course(program='CS', designation='writingrequirement'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('AADS', '3104W'),))
+Course(program='AADS', designation='3104W'): CourseInfo(credits='3', terms=('Spring', 'Senior'), prereqs=[])
+Course(program='CS', designation='major'): CourseInfo(credits='0', terms=('Spring', 'Senior'), prereqs=(('CS', 'mathematics'), ('CS', 'sciencelab'), ('CS', 'scienceb'), ('CS', 'sciencec'), ('CS', 'esintro'), ('CS', 'liberalarts'), ('CS', 'core'), ('CS', 'depth'), ('CS', '4959'), ('CS', 'techelectives'), ('CS', '1151'), ('CS', 'openelectives'), ('CS', 'writingrequirement')))
+Course(program='AADS', designation='3850'): CourseInfo(credits=3, terms=('Spring', 'Senior'), prereqs=[])
+
+# Autograder Output
+
+python3 studentSolutionWrapper.py initial6 goal6
+Loading courses from newcatalog.xlst...
+/usr/local/anaconda3/lib/python3.6/site-packages/openpyxl/reader/worksheet.py:310: UserWarning: Unknown extension is not supported and will be removed
+  warn(msg)
+Wrapper using this file as the INITIAL file:
+ initial6
+Loaded from INITIAL file:
+ [Course(program='CS', designation='1101'), Course(program='JAPN', designation='1101')]
+Wrapper using this file as the GOAL file:
+ goal6
+Loaded from GOAL file:
+ [Course(program='CS', designation='major'), Course(program='JAPN', designation='3891')]
+master.py executing command:
+python3 grader.py initial6 goal6 solution.txt
+Loading courses from newcatalog.xlst...
+/usr/local/anaconda3/lib/python3.6/site-packages/openpyxl/reader/worksheet.py:310: UserWarning: Unknown extension is not supported and will be removed
+  warn(msg)
+Autograder using this file as the INITIAL file:
+ initial6
+Loaded from INITIAL file:
+ [Course(program='CS', designation='1101'), Course(program='JAPN', designation='1101')]
+Autograder using this file as the GOAL file:
+ goal6
+Loaded from GOAL file:
+ [Course(program='CS', designation='major'), Course(program='JAPN', designation='3891')]
+Autograder using this file as the SOLUTION file:
+ solution.txt
+Loaded from SOLUTION file:
+ [(Course(program='AADS', designation='3104W'), (Semester.Spring, Year.Senior))]
+Loaded courses in your solution:
+ [(Course(program='AADS', designation='3104W'), (Semester.Spring, Year.Senior))]
+Checking number of credit hours in each term...
+{(Semester.Fall, Year.Frosh): 0, (Semester.Spring, Year.Frosh): 0, (Semester.Summer, Year.Frosh): 0, (Semester.Fall, Year.Sophomore): 0, (Semester.Spring, Year.Sophomore): 0, (Semester.Summer, Year.Sophomore): 0, (Semester.Fall, Year.Junior): 0, (Semester.Spring, Year.Junior): 0, (Semester.Summer, Year.Junior): 0, (Semester.Fall, Year.Senior): 0, (Semester.Spring, Year.Senior): 3, (Semester.Summer, Year.Senior): 0}
+Error in your solution:
+	Too few credits taken in term # (Semester.Fall, Year.Frosh)
+Error in your solution:
+	Too few credits taken in term # (Semester.Spring, Year.Frosh)
+Error in your solution:
+	Too few credits taken in term # (Semester.Fall, Year.Sophomore)
+Error in your solution:
+	Too few credits taken in term # (Semester.Spring, Year.Sophomore)
+Error in your solution:
+	Too few credits taken in term # (Semester.Fall, Year.Junior)
+Error in your solution:
+	Too few credits taken in term # (Semester.Spring, Year.Junior)
+Error in your solution:
+	Too few credits taken in term # (Semester.Fall, Year.Senior)
+Error in your solution:
+	Too few credits taken in term # (Semester.Spring, Year.Senior)
+Checking that each course's credits and available terms match solution...
+Checking that each course's prerequisites are taken before that course...
+Taking course:  Course(program='AADS', designation='3104W') ...
+Prereqs are:  ()
+Successfully took course:  Course(program='AADS', designation='3104W')
+Checking that all courses in the goal state are taken...
+Error in your solution:
+	Did not satisfy requirement/goal  Course(program='CS', designation='major')
+Error in your solution:
+	Did not satisfy requirement/goal  Course(program='JAPN', designation='3891')
+********** Autograder finished **********
+There are  10  errors in your solution.

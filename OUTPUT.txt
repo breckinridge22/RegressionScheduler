@@ -1,0 +1,4 @@
+Course(program='CS', designation='1101'): CourseInfo(credits='3', terms=('Fall', 'Frosh'), prereqs=[])
+Course(program='AADS', designation='1010'): CourseInfo(credits='3', terms=('Fall', 'Frosh'), prereqs=[])
+Course(program='AADS', designation='1506'): CourseInfo(credits='3', terms=('Fall', 'Frosh'), prereqs=[])
+Course(program='AADS', designation='1706'): CourseInfo(credits='3', terms=('Fall', 'Frosh'), prereqs=[])
